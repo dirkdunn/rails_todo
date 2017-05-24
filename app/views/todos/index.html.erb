@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Todo</title>
+  </head>
+  <body>
+    <h1>Todo List</h1>
+
+    <ul class="todos-list">
+      <% for todo in @todos %>
+        <li>
+          <p>Name: <%= todo.name %></p>
+          <p>Description: <%= todo.description %></p>
+        </li>
+      <% end %>
+    </ul>
+
+  <%= link_to "Add a todo", todo_path(:new) %>
+  </body>
+</html>
