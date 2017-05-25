@@ -12,6 +12,21 @@ class TodosController < ApplicationController
     @todo_added = Todo.find(params[:id])
   end
 
+  def edit
+    @todo = Todo.find(params[:id])
+  end
+
+  def update
+    @todo = Todo.find(params[:id])
+
+    if @todo.update(todo_params)
+      flash[:notice] = "Todo was successfully updated!"
+      redirect_to todo_path(@todo)
+    else
+      render 'edit'
+    end
+  end
+
   def create
     # Using rails 4 "strong params" to whitelist only certain params for this route
     # when a request is made here, we grab name and description from params, and put them in .new
@@ -26,7 +41,6 @@ class TodosController < ApplicationController
       flash[:notice] = "Todo was created successfully!"
       redirect_to todo_path(@todo)
     else
-      puts "FAIL"
       render "new"
     end
 
