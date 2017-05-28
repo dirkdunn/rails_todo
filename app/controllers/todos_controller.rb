@@ -1,4 +1,6 @@
 class TodosController < ApplicationController
+  # before the given actions, run the set_todo method
+  before_action :set_todo, only: [:show, :edit, :update, :destroy]
 
   def index
     @todos = Todo.last(5).reverse
@@ -9,25 +11,19 @@ class TodosController < ApplicationController
   end
 
   def show
-    @todo = Todo.find(params[:id])
   end
 
   def edit
-    @todo = Todo.find(params[:id])
   end
 
   def destroy
-    @todo = Todo.find(params[:id])
     @todo.destroy
     flash[:notice] = "Todo was successfully destroyed!"
 
     redirect_to todos_path
-
   end
 
   def update
-    @todo = Todo.find(params[:id])
-
     if @todo.update(todo_params)
       flash[:notice] = "Todo was successfully updated!"
       redirect_to todo_path(@todo)
@@ -62,6 +58,10 @@ class TodosController < ApplicationController
   # and not have to worry about hackers putting in url params to screw up your db
   def todo_params
     params.require(:todo).permit(:name, :description)
+  end
+
+  def set_todo
+    @todo = Todo.find(params[:id])
   end
 
 end
