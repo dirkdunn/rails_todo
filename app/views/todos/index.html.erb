@@ -1,12 +1,20 @@
+<p> <%= link_to "Create a todo", new_todo_path %> </p>
 
 <h1>Todo List</h1>
-<ul class="todos-list">
+
+<table class="todos-list">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
   <% for todo in @todos %>
-    <li>
-      <p>Name: <%= todo.name %></p>
-      <p>Description: <%= todo.description %></p>
-    </li>
+    <tr>
+      <td><%= todo.name %></yd>
+      <td><%= todo.description %></td>
+      <td> <%= link_to "Edit", edit_todo_path(todo) %></td>
+      <td><%= link_to "Show", todo_path(todo) %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
 
 <%= link_to "Add a todo", todo_path(:new) %>

@@ -9,7 +9,7 @@ class TodosController < ApplicationController
   end
 
   def show
-    @todo_added = Todo.find(params[:id])
+    @todo = Todo.find(params[:id])
   end
 
   def edit

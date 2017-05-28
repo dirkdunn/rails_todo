@@ -1,4 +1,5 @@
-<p><%= @todo_added.name %></p>
-<p><%= @todo_added.description %></p>
+<p><%= @todo.name %></p>
+<p><%= @todo.description %></p>
 
-<%= link_to "View Todos", todos_url(:index) %>
+<%= link_to "View Todos", todos_path %>
+<%= link_to "Edit this todo", edit_todo_path(@todo) %>
